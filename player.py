@@ -18,12 +18,15 @@ class Player:
         print("small_blind = ", game_state["small_blind"])
         print("current_buy_in = ", game_state["current_buy_in"])
         print("is_raised = ", is_raised)
+
+        num_community_cards = len(game_state["community_cards"])
+        print("num_community_cards = ", num_community_cards)
         
         # For testing only
         score,potential = analyze_hand(game_state)
         print ("Test score = ",score, ", potential = ", potential)
 
-        if game_state["bet_index"] == 0:
+        if num_community_cards == 0:
             # Pre-flop
             if (hand_strength < 10):
                 # Raise (unless already raised)
