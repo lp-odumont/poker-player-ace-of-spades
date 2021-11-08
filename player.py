@@ -46,7 +46,6 @@ class Player:
                 return 0
             return 0
         else:
-            # TODO - Post-Flop
             simple_strength = analyze_hand(game_state)
             if simple_strength == 0:
                 return 0
@@ -59,5 +58,13 @@ class Player:
         return 0
 
     def showdown(self, game_state):
-        pass
+        simple_strength = analyze_hand(game_state)
+        if simple_strength == 0:
+            return 0
+        elif simple_strength == 1:
+            # Call
+            return game_state["current_buy_in"]
+        elif simple_strength > 1:
+            # Raise
+            return game_state["current_buy_in"] * simple_strength
 
