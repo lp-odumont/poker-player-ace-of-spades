@@ -6,7 +6,7 @@ from evaluate_hole import get_hand_strength
 
 
 class Player:
-    VERSION = "v0.6"
+    VERSION = "v0.7"
 
 
     def betRequest(self, game_state):
@@ -15,6 +15,7 @@ class Player:
         hand_strength = get_hand_strength(game_state)
 
         is_raised = game_state["current_buy_in"] > (game_state["small_blind"] * 2)
+        is_big_raise = game_state["current_buy_in"] > (game_state["small_blind"] * 10)
         print("small_blind = ", game_state["small_blind"])
         print("current_buy_in = ", game_state["current_buy_in"])
         print("is_raised = ", is_raised)
@@ -45,10 +46,16 @@ class Player:
             if (hand_strength < 25):
                 # Good hand
                 # Call (unless big raise)
-                if (is_raised):
-                    # Fold
-                    print ("Good hand, fold due to raise")
-                    return 0
+                if is_raised:
+                    if is_big_raise:
+                        # Fold
+                        print ("Good hand, fold due to raise")
+                        return 0
+                    else:
+                        # Call
+                        bet_amount = game_state["current_buy_in"]
+                        print ("Good hand, call small raise ", )
+                        return bet_amount
                 else:
                     # Call
                     bet_amount = game_state["current_buy_in"]
