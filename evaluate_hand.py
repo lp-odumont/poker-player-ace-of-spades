@@ -57,7 +57,7 @@ def analyze_hand(game_state):
         if suit_hits == 5:
             # flush
             score += 5
-        if suit_hits == 4:
+        if suit_hits == 4 and score < 5:
             if cards_left == 2:
                 print ("2 cards for a flush")
                 potential += 10
@@ -65,9 +65,5 @@ def analyze_hand(game_state):
                 print ("1 card for a flush")
                 potential += 5
     
-    # Return the score for this hand
-    #return score
-    #hand = {"score" = 0, "potential" = 0}
-    #hand["score"] = score
-    #hand["potential"] = 0
+    # Return the score & potential for this hand
     return score,potential
