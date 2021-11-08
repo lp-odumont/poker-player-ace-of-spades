@@ -45,6 +45,14 @@ def analyze_hand(game_state):
         if hits == 2:
             # pair
             score += 1
+            # If top pair, add a point
+            is_top_pair = True
+            for check_card in all_cards:
+                if  check_card["rank"] > this_card["rank"]:
+                    is_top_pair = False
+            if is_top_pair:
+                print ("We have top pair!!")
+                score += 1;
         if suit_hits == 5:
             # flush
             score += 5
