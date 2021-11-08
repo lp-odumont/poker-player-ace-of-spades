@@ -27,11 +27,8 @@ def get_hand_strength(game_state):
         score += distance * 3
 
 
-   
-    
-
     print("hole 0 %s"%hole_0)
     print("hole 1 %s"%hole_1)
     print("score %d"%score)
 
-    return 18
+    return score
