@@ -8,22 +8,26 @@ def get_hand_strength(game_state):
     hole = data["hole_cards"]
     hole_0 = hole[0]
     hole_1 = hole[1]
-    is_same = hole_0["suit"] == hole_1["suit"]
+    is_suit = hole_0["suit"] == hole_1["suit"]
     h_0 = convert_card_to_int(hole_0["rank"])
     h_1 = convert_card_to_int(hole_1["rank"])
+    is_pair = h_0 == h_1
     
-    score = 0
-    if not is_same:
-        score += 10
     if h_0 < h_1:
         temp = h_1
         h_1 = h_0
         h_0 = temp
 
-    if h_0 != h_1:
-        score +=10
-    
-    score += 15-h_0
+    score = 0
+    if is_pair:
+        score = (14-h_0) * 1.5
+    else:
+        score += (14-h_0) * 3
+        distance = h_0 - h_1
+        score += distance * 3
+
+
+   
     
 
     print("hole 0 %s"%hole_0)
