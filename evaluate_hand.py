@@ -21,11 +21,11 @@ def analyze_hand(game_state):
     for this_card in all_cards:
         hits = 1
         suit_hits = 1
-        print("This Card: rank = ", this_card["rank"], ", suit = ", this_card["suit"])
+        #print("This Card: rank = ", this_card["rank"], ", suit = ", this_card["suit"])
         consider = False
         for check_card in all_cards:
             if consider == True:
-                print ("Comparing against: rank = ", check_card["rank"], ", suit = ", check_card["suit"])
+                #print ("Comparing against: rank = ", check_card["rank"], ", suit = ", check_card["suit"])
                 if (this_card["rank"] == check_card["rank"]):
                     hits += 1
                 if (this_card["suit"] == check_card["suit"]):
@@ -42,7 +42,7 @@ def analyze_hand(game_state):
             # 3 of a kind
             score += 3
         if hits == 2:
-            # 3 of a kind
+            # pair
             score += 1
         if suit_hits == 5:
             # flush
@@ -50,3 +50,7 @@ def analyze_hand(game_state):
     
     # Return the score for this hand
     return score
+    #hand = {"score" = 0, "potential" = 0}
+    #hand["score"] = score
+    #hand["potential"] = 0
+    #return hand

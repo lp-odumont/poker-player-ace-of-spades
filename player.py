@@ -21,9 +21,9 @@ class Player:
         
         # For testing only
         test = analyze_hand(game_state)
-        print ("Test score = ", test)
+        #print ("Test score = ", test["score"], ", potential = ", test["potential"])
 
-        if game_state["round"] == 0:
+        if game_state["bet_index"] == 0:
             # Pre-flop
             if (hand_strength < 10):
                 # Raise (unless already raised)
@@ -33,7 +33,7 @@ class Player:
                 else:
                     # Call
                     return game_state["current_buy_in"]
-            if (hand_strength < 25):
+            if (hand_strength < 30):
                 # Call (unless big raise)
                 if (is_raised):
                     # Fold

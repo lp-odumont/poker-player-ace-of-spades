@@ -106,6 +106,11 @@ class PlayerTest(unittest.TestCase):
         """Test the showdown method."""
         self.player.showdown(game_state=self.game_state)
 
+    def test_hand1(self):
+        print ("TESTING HAND 1")
+        self.game_state["community_cards"][0]["rank"] = "A"
+        return_value = self.player.betRequest(game_state=self.game_state)
+
 if __name__ == "__main__":
     # Automatically executes all test methods (starting with test_) in unittest.TestCase classes
     unittest.main()
