@@ -17,6 +17,7 @@ def analyze_hand(game_state):
     all_cards = get_all_cards(game_state)
     print("All Cards: ", all_cards)
     score = 0
+    potential = 0
     # Check for any paired or suited cards
     for this_card in all_cards:
         hits = 1
@@ -49,8 +50,8 @@ def analyze_hand(game_state):
             score += 5
     
     # Return the score for this hand
-    return score
+    #return score
     #hand = {"score" = 0, "potential" = 0}
     #hand["score"] = score
     #hand["potential"] = 0
-    #return hand
+    return score,potential
