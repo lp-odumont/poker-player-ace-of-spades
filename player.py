@@ -20,8 +20,8 @@ class Player:
         print("is_raised = ", is_raised)
         
         # For testing only
-        test = analyze_hand(game_state)
-        #print ("Test score = ", test["score"], ", potential = ", test["potential"])
+        score,potential = analyze_hand(game_state)
+        print ("Test score = ",score, ", potential = ", potential)
 
         if game_state["bet_index"] == 0:
             # Pre-flop
@@ -46,7 +46,8 @@ class Player:
                 return 0
             return 0
         else:
-            simple_strength = analyze_hand(game_state)
+            #simple_strength = analyze_hand(game_state)
+            simple_strength = score
             if simple_strength == 0:
                 return 0
             elif simple_strength == 1:
@@ -58,7 +59,8 @@ class Player:
         return 0
 
     def showdown(self, game_state):
-        simple_strength = analyze_hand(game_state)
+        score,potential = analyze_hand(game_state)
+        simple_strength = score
         if simple_strength == 0:
             return 0
         elif simple_strength == 1:
