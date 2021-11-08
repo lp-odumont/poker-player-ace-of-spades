@@ -6,7 +6,7 @@ from evaluate_hole import get_hand_strength
 
 
 class Player:
-    VERSION = "v0.3"
+    VERSION = "v0.4"
 
 
     def betRequest(self, game_state):
