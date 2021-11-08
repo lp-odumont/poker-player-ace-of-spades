@@ -18,6 +18,7 @@ def analyze_hand(game_state):
     print("All Cards: ", all_cards)
     score = 0
     potential = 0
+    cards_left = 7 - len(all_cards)
     # Check for any paired or suited cards
     for this_card in all_cards:
         hits = 1
@@ -56,6 +57,13 @@ def analyze_hand(game_state):
         if suit_hits == 5:
             # flush
             score += 5
+        if suit_hits == 4:
+            if cards_left == 2:
+                print ("2 cards for a flush")
+                potential += 10
+            if cards_left == 1:
+                print ("1 card for a flush")
+                potential += 5
     
     # Return the score for this hand
     #return score

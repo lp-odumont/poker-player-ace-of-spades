@@ -6,7 +6,7 @@ from evaluate_hole import get_hand_strength
 
 
 class Player:
-    VERSION = "v0.5"
+    VERSION = "v0.6"
 
 
     def betRequest(self, game_state):
@@ -64,12 +64,18 @@ class Player:
             simple_strength = score
             print("Post flop: Score = ", score, "Potential = ", potential)
             if simple_strength == 0:
-                print ("Fold post-flop (missed)")
-                return 0
+                if potential == 0:
+                    print ("Fold post-flop (missed)")
+                    return 0
+                else:
+                    # Call
+                    bet_amount = game_state["current_buy_in"]
+                    print ("Call post-flop due to potential: ", bet_amount)
+                    return bet_amount
             elif simple_strength == 1:
                 # Call
                 bet_amount = game_state["current_buy_in"]
-                print ("Call post-flop: ", bet_amount)
+                print ("Call post-flop due to small pair: ", bet_amount)
                 return bet_amount
             elif simple_strength > 1:
                 # Raise
