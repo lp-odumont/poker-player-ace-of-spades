@@ -13,4 +13,4 @@ def get_hand_strength(game_state):
     print(" %s"%hole_0)
     print(hole_1)
 
-    return 100
+    return 18
