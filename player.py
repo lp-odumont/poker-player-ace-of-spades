@@ -1,12 +1,12 @@
 
 def get_hand_strength(game_state):
-    return 100
+    return 18
 
 def analyze_hand(game_state):
     return 0
 
 class Player:
-    VERSION = "v0.1"
+    VERSION = "v0.2"
 
 
     def betRequest(self, game_state):
@@ -44,12 +44,12 @@ class Player:
         else:
             # TODO - Post-Flop
             simple_strength = analyze_hand(game_state)
-            if simple_strength = 0:
+            if simple_strength == 0:
                 return 0
-            else if simple_strength = 1:
+            elif simple_strength == 1:
                 # Call
                 return game_state["current_buy_in"]
-            else if simple_strength > 1:
+            elif simple_strength > 1:
                 # Raise (x3)
                 return game_state["current_buy_in"] * 3
         return 0
