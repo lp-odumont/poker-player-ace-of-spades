@@ -1,5 +1,8 @@
 from card_utils import convert_card_to_int
 
+import logging
+logging.getLogger().setLevel(logging.DEBUG)
+
 def get_hand_strength(game_state):
     print("Caclulate")
     id = game_state["in_action"]
@@ -30,5 +33,6 @@ def get_hand_strength(game_state):
     print("hole 0 %s"%hole_0)
     print("hole 1 %s"%hole_1)
     print("score %d"%score)
+    logging.info("Calculated Hole Score: %s", score)
 
     return score
