@@ -28,10 +28,13 @@ class Player:
 
         if num_community_cards == 0:
             # Pre-flop
+            print("Pre flop hand strength: ", hand_strength)
             if (hand_strength < 10):
                 # Great hand!
                 # Always raise 3 * min raise
-                return game_state["current_buy_in"] + (game_state["minimum_raise"] * 2)
+                bet_amount = game_state["current_buy_in"] + (game_state["minimum_raise"] * 2)
+                print ("Great Hand, will bet ", bet_amount)
+                return bet_amount
                 # Raise (unless already raised)
                 #if is_raised:
                 #    # Raise (3 x Big Blind)
@@ -44,25 +47,35 @@ class Player:
                 # Call (unless big raise)
                 if (is_raised):
                     # Fold
+                    print ("Good hand, fold due to raise")
                     return 0
                 else:
                     # Call
-                    return game_state["current_buy_in"]
+                    bet_amount = game_state["current_buy_in"]
+                    print ("Good hand, call ", )
+                    return bet_amount
             else:
                 # Fold
+                print ("Fold pre-flop")
                 return 0
             return 0
         else:
             # Post-flop
             simple_strength = score
+            print("Post flop: Score = ", score, "Potential = ", potential)
             if simple_strength == 0:
+                print ("Fold post-flop (missed)")
                 return 0
             elif simple_strength == 1:
                 # Call
-                return game_state["current_buy_in"]
+                bet_amount = game_state["current_buy_in"]
+                print ("Call post-flop: ", bet_amount)
+                return bet_amount
             elif simple_strength > 1:
                 # Raise
-                return game_state["current_buy_in"] + (game_state["minimum_raise"] * (simple_strength - 1))
+                bet_amount = game_state["current_buy_in"] + (game_state["minimum_raise"] * (simple_strength - 1))
+                print ("Raise post-flop: ", bet_amount)
+                return bet_amount
         return 0
 
     def showdown(self, game_state):
