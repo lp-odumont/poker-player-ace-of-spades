@@ -2,6 +2,9 @@
 def get_hand_strength(game_state):
     return 100
 
+def analyze_hand(game_state):
+    return 0
+
 class Player:
     VERSION = "v0.1"
 
@@ -25,7 +28,7 @@ class Player:
                     return game_state["small_blind"] * 6;
                 else:
                     # Call
-                    game_state["current_buy_in"]
+                    return game_state["current_buy_in"]
             if (hand_strength < 25):
                 # Call (unless big raise)
                 if (is_raised):
@@ -40,7 +43,15 @@ class Player:
             return 0
         else:
             # TODO - Post-Flop
-            return 0
+            simple_strength = analyze_hand(game_state)
+            if simple_strength = 0:
+                return 0
+            else if simple_strength = 1:
+                # Call
+                return game_state["current_buy_in"]
+            else if simple_strength > 1:
+                # Raise (x3)
+                return game_state["current_buy_in"] * 3
         return 0
 
     def showdown(self, game_state):
